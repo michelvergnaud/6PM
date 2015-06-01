@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="icon">images/icon.png</file>
+        <file alias="stop">images/stop.png</file>
+        <file alias="loopOff">images/loop_off.png</file>
+        <file alias="loopOn">images/loop_on.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,19 @@
+
+Version 0.20.1
+Tremolo increased volume instead of lowering it.
+A few less clics again.
+
+2015-05-19
+Version 0.20
+No more clicks ! Or at least not so many :)
+Algorithm window has a minimum size and is always visible.
+User guide can be displayed from help menu.
+Envelopes now follow main oscillator amplitude and frequency knobs positions.
+Drawing connections between oscillators when editing algo should be easier.
+
+2015-05-12
+Version 0.15
+Presets and midimaps files are now copied from /usr/share/6PM into ~/.6pm at first run
+
+2015-05-10
+Initial commit
