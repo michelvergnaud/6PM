@@ -6,6 +6,6 @@ Comment=Phase modulation (PM) synthesizer made of six oscillators.
 Comment[fr]=Synthétiseur par modulation de phase (PM) fait à partir de 6 oscillateurs.
 Exec=6pm
 Terminal=false
-Icon=icon
+Icon=6PM-icon
 Type=Application
 Categories=AudioVideo;Audio;
