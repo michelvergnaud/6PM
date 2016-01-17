@@ -101,7 +101,7 @@ MVMainWindow::MVMainWindow() : QMainWindow()
     menuBar()->addSeparator();
     menuBar()->addMenu(helpMenu);
 
-    setWindowIcon(QIcon(":/images/icon"));
+    setWindowIcon(QIcon(":/ressources/6PM-icon"));
 
     Globals::player = new MVPlayer();
     Globals::controlmanager = new MVControlManager();
