@@ -35,10 +35,10 @@ MVNote::MVNote(const float f) : freq(f)
     bReleasing = false;
     bSustainOn = false;
     nbFadeOutSteps = 0;
-    amp = 0.0;
+    amp = 0.0f;
 
     dt = 0;
-    t = 0.0;
+    t = 0.0f;
 
     for(int i=0;i<NB_OSC;i++)
         oscillators[i] = new MVOscillator(i, this, t);
@@ -46,8 +46,6 @@ MVNote::MVNote(const float f) : freq(f)
     createAlgo();
 
     pThread = 0;
-    if ( ! startThread(&pThread, _noteThread, this, true, 80, 1, false))
-        std::cout << ("Failed to start jack note thread");
 }
 
 MVNote::~MVNote()
@@ -68,10 +66,12 @@ void MVNote::fillBuffer()
     memset(bufferL,0,bufferSize * sizeof(float));
     memset(bufferR,0,bufferSize * sizeof(float));
 
+    //if( ! bPlaying) return;
+
     for(int i=0;i<NB_OSC;i++)
     {
-        panR[i] = oscData[i].pan+0.5;
-        panL[i] = 1.0-panR[i];
+        panR[i] = oscData[i].pan+0.5f;
+        panL[i] = 1.0f-panR[i];
     }
 
     bool bFinished = false;
@@ -84,11 +84,19 @@ void MVNote::fillBuffer()
         for(int i=0;i<NB_OSC;i++)
             oscillators[i]->next();
         dt++;
+        // Avoid rounding errors with too big numbers when note last very long. Seems ok every few minutes
+        if(dt>96000 * 120)dt=0;
+
         iBuf++;
     }
 
     if(bFinished)
         stopPlay();
+}
+
+void MVNote::skipBuffer()
+{
+    sem_post(&sem);
 }
 
 void MVNote::startPlay(unsigned char vel)
@@ -101,10 +109,19 @@ void MVNote::startPlay(unsigned char vel)
     if( !  bPlaying)
     {
         dt = 0;
-        t = 0.0;
+        t = 0.0f;
     }
     amp = (float)vel/127.0f;
-    bPlaying = true;
+
+    if( ! bPlaying)
+    {
+        bPlaying = true;
+        if(! startThread(&pThread, _noteThread, this, true, 30, 1, true))
+        {
+            bPlaying = false;
+            std::cout << "Failed to start note thread" << std::endl;
+        }
+    }
 }
 
 void MVNote::startRelease()
@@ -113,11 +130,13 @@ void MVNote::startRelease()
         oscillators[i]->startRelease();
     bReleasing = true;
 }
+
 void MVNote::stopPlay()
 {
     if( bReleasing)
     {
         bPlaying = false;
+        sem_post(&sem);
         bSustainOn = false;
         bReleasing = false;
         Globals::player->removePlayingNote(this);
@@ -183,7 +202,7 @@ void MVNote::createAlgo(QString descriptor)
     QStringList list = descriptor.split(' ');
 
     QString str = list.at(0);
-    nbOps = str.length(); if(nbOps > 6) std::cout << str.toStdString() << " "<< descriptor.toStdString() << std::endl;
+    nbOps = str.length();
     for(int i=0;i<nbOps;i++)
          ops[i] = str.at(i).digitValue() - 1;
 
@@ -235,16 +254,21 @@ void *MVNote::_noteThread(void *arg)
     return static_cast<MVNote*>(arg)->noteThread();
 }
 
+
 void *MVNote::noteThread(void)
 {
-    if (sem_init(&sem, 0, 0) < 0 /*|| sem_init(&semFinished, 0, 1) < 0*/)
+    if (sem_init(&sem, 0, 0) < 0 )
     {
         std::cout << "Error on jack note sem_init " << std::endl;
         return NULL;
     }
-
-    while (true)
+    while (bPlaying)
     {
+        // Randomize freq
+        for(int i=0;i<NB_OSC;i++)
+            if(oscData[i].randomize > 0)
+                oscData[i].instantFreq = oscData[i].freqratio * oscData[i].detune * (1.0 + oscData[i].randomize * ((float)(rand())/RAND_MAX - 0.5));
+
         if (sem_wait(&sem) < 0)
         {
             std::cout << "noteThread semaphore wait error" << std::endl;
@@ -253,20 +277,20 @@ void *MVNote::noteThread(void)
         fillBuffer();
     }
     sem_destroy(&sem);
-    //sem_destroy(&semFinished);
+
     return NULL;
 }
 
 // Static data
 MVNote::OscillatorData MVNote::oscData[NB_OSC]=
-    {{0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0},
-     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0},
-     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0},
-     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0},
-     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0},
-     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0.0,5.0}};
+    {{0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0},
+     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0},
+     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0},
+     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0},
+     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0},
+     {0.0,0.3,1.0,1.0,5.0,0.0,5.0,0,0.0,5.0,0,440.0,0.0}};
 
-float MVNote::pitchBend = 1.0;
+float MVNote::pitchBend = 1.0f;
 
 const char* MVNote::algoDescriptor[NB_ALGO] =
     {"13 1*2 3*4 4*5 5*6 6*6", "13 1*2 2*2 3*4 4*5 5*6", "14 1*2 2*3 4*5 5*6 6*6", "14 1*2 2*3 4*5 5*6 6*4", "135 1*2 3*4 5*6 6*6", "135 1*2 3*4 5*6 6*5", "13 1*2 3*4 3*5 5*6 6*6", "13 1*2 3*4 3*5 4*4 5*6",
@@ -282,3 +306,4 @@ int MVNote::userAlgoIndex = 0;
 int MVNote::nbOps = 0;
 int MVNote::ops[NB_OSC];
 QList<int> MVNote::modulatorsData[NB_OSC];
+

@@ -23,8 +23,8 @@ public:
         if(bAll)
         {
             oldFreq = freq = note->getFreq() * freqEnvelope->nextFrame() * data.freqratio * MVNote::pitchBend  * data.detune;
-            phi = 0.0;
-            v = 0.0;
+            phi = 0.0f;
+            v = 0.0f;
             lfoTremolo->reset();
             lfoVibrato->reset();
         }
@@ -34,23 +34,35 @@ public:
         ampEnvelope->startRelease();
         freqEnvelope->startRelease();
     }
-    inline float value() const {return v;}
+    inline float value() const {return v ;}
     inline bool isFinished() const{return ampEnvelope->isFinished();}
 
     inline void next()
     {
-        freq = note->getFreq() * freqEnvelope->nextFrame() * data.freqratio * MVNote::pitchBend  * data.detune  * pow(2, lfoVibrato->value()/2);
-        phi -= (freq-oldFreq)*M2PI*t;
-        oldFreq = freq;
+        freq = note->getFreq() * MVNote::pitchBend * data.instantFreq;
 
-        float modulation = 0;
+        if(MVFreqEnvelope::envFreqData[num].used)
+            freq *= freqEnvelope->nextFrame();
+
+        if(lfoVibrato->value() != 1.0)
+            freq *= pow(2.0f, lfoVibrato->value());
+
+        if(freq != oldFreq)
+        {
+            phi = fmod(phi+(oldFreq-freq)*M2PI*t,M2PI);
+            oldFreq = freq;
+        }
+
+        float modulation = 0.0f;
         for(int i=0; i<MVNote::modulatorsData[num].count(); i++)
         {
             int modIndex = MVNote::modulatorsData[num].value(i,-1);
             if(modIndex > -1)
                 modulation += data.iMod * note->getOscillator(modIndex).value();
-        }
-        v = data.amp  * (1.0 - lfoTremolo->value()) * ampEnvelope->nextFrame() * sin(M2PI * freq * t + phi + modulation);
+        }        
+        v = data.amp * ampEnvelope->nextFrame() * lfoTremolo->value() * sinf(M2PI * freq * t + phi + modulation);
+
+
         lfoTremolo->next();
         lfoVibrato->next();
     }
@@ -68,6 +80,7 @@ private:
     float amp;
     float oldFreq;
     float phi;
+
     const float & t;
 };
 

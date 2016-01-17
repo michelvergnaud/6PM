@@ -19,6 +19,6 @@
 #ifndef MVVERSION_H
 #define MVVERSION_H
 
-#define MV6PM_VERSION "0.20.1"
+#define MV6PM_VERSION "0.8.1"
 
 #endif // MVVERSION_H

@@ -26,6 +26,8 @@
 
 #include "MVPlayer.h"
 
+#include <errno.h>
+
 float msecToFrames(int msec){return (float)msec * MVPlayer::getSampleRate() / 1000.0;}
 float framesTomsec(int frames){return 1000.0 * (float)frames / MVPlayer::getSampleRate() ;}
 
@@ -35,6 +37,7 @@ bool startThread(pthread_t *pth, void *(*thread_fn)(void*), void *arg, bool sche
     int chk;
     bool outcome = false;
     bool retry = true;
+    int prio = rtprio;
     while (retry)
     {
         if (!(chk = pthread_attr_init(&attr)))
@@ -60,7 +63,7 @@ bool startThread(pthread_t *pth, void *(*thread_fn)(void*), void *arg, bool sche
                         continue;
                     }
                     sched_param prio_params;
-                    int prio = rtprio;
+
                     if (priodec)
                         prio -= priodec;
                     prio_params.sched_priority = (prio > 0) ? prio : 0;
@@ -71,17 +74,22 @@ bool startThread(pthread_t *pth, void *(*thread_fn)(void*), void *arg, bool sche
                         continue;
                     }
                 }
-
                 if (!(chk = pthread_create(pth, &attr, thread_fn, arg)))
                 {
+                    //std::cout << "Ok" << std::endl;
                     outcome = true;
                     break;
                 }
                 else if (schedfifo)
                 {
+                    std::cout << "chk true... trying shedfifo false" << std::endl;
                     schedfifo = false;
                     continue;
                 }
+                std::cout << "chk definitly false. Giving up" << std::endl;
+                if(chk == EAGAIN) std::cout << " EAGAIN Insufficient resources to create another thread" << std::endl;
+                if(chk == EINVAL) std::cout << " EINVAL Invalid settings in attr" << std::endl;
+                if(chk == EPERM) std::cout << " EPERM No permission to set the scheduling policy" << std::endl;
                 outcome = false;
                 break;
             }
@@ -99,10 +107,11 @@ bool startThread(pthread_t *pth, void *(*thread_fn)(void*), void *arg, bool sche
             continue;
         }
         std::cout << "Failed to start thread (sched_other): " << std::endl;
-
         outcome = false;
         break;
     }
+    if( ! outcome)
+        std::cout << "prio : " << prio << std::endl;
     return outcome;
 }
 

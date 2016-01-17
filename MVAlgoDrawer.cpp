@@ -133,7 +133,6 @@ void MVAlgoDrawer::contextMenu(QPoint p)
     {
         if(graphicOscs[i]->contains(p))
         {
-            std::cout << i<< std::endl;
             QMenu * menu = new QMenu(this);
             menu->addAction(QString(" Oscillator %1").arg(i+1));
             menu->addSeparator();

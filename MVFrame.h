@@ -106,6 +106,7 @@ private:
     MVMeter * meterR;
     MVSlider * volSlider;
     MVBackground * oscBg[NB_OSC];
+    //QWidget * oscBg[NB_OSC];
     void loadPreset(QString);
     void loadMidiMap(QString);
     void updateCbAlgo();

@@ -39,6 +39,11 @@ MVEnvelope_UI::MVEnvelope_UI(MVAmpEnvelope::EnvelopeData &ed, int n, DisplayMode
     dialslayout->setContentsMargins(1,1,1,1);
     cbLoop = new MVCheckBox(":/images/loopOn",":/images/loopOff");
     cbLoop->setMinimumSize(20,20);
+    cbUse = new MVCheckBox(":/images/usedOn",":/images/usedOff");
+    cbUse->setMinimumSize(10,10);
+
+    if(displayMode == FREQ)
+        dialslayout->addWidget(cbUse, 1, 0);
 
     for(int i=0;i<NB_ENV_PTS;i++)
     {
@@ -60,17 +65,18 @@ MVEnvelope_UI::MVEnvelope_UI(MVAmpEnvelope::EnvelopeData &ed, int n, DisplayMode
 
         if(i>0 || displayMode == AMP)
             dialslayout->addWidget(dialsTime[i], 1, i);
+
         if (i<NB_ENV_PTS-1)
             dialslayout->addWidget(dialsValue[i], 0, i);
         else
             dialslayout->addWidget(cbLoop, 0, i);
-        //dialslayout->setAlignment(Qt::AlignCenter);
 
         connect(dialsTime[i] , SIGNAL(valueChanged(int)),this,SLOT(setPointTime(int)));
         connect(dialsValue[i] , SIGNAL(valueChanged(int)),this,SLOT(setPointValue(int)));
     }
     saveSustainPoint = envData.sustainPoint;
     connect(cbLoop,SIGNAL(toggled(bool)),this,SLOT(cbLoopToggled(bool)));
+    connect(cbUse,SIGNAL(toggled(bool)),this,SLOT(cbUseToggled(bool)));
 
     dialsWidget->setLayout(dialslayout);
     envDrawer = new MVEnvelopeDrawer(ed, numOsc, (MVEnvelopeDrawer::DisplayMode)displayMode);
@@ -87,8 +93,8 @@ void MVEnvelope_UI::updateUI()
 {
     for(int i=0;i<NB_ENV_PTS;i++)
     {
-        if(i>0)
-            dialsTime[i]->setValue(indexOfTime(framesTomsec(envData.points[i].frame)/1000));
+        if(i>0 || displayMode == AMP)      
+                     dialsTime[i]->setValue(indexOfTime(framesTomsec(envData.points[i].frame)));
         if (i<NB_ENV_PTS-1)
             dialsValue[i]->setValue(displayMode==AMP ? envData.points[i].value*100 : round(10*log(envData.points[i].value))/log(TWELFTH_ROOT2));
 
@@ -96,6 +102,7 @@ void MVEnvelope_UI::updateUI()
         dialsTime[i]->setMainColor(i == envData.sustainPoint ? QColor::fromRgb(92,0,0) : Qt::black);
     }
     cbLoop->setChecked(envData.loop);
+    cbUse->setChecked(envData.used);
     updateLabels();
     envDrawer->update();
 }
@@ -107,7 +114,13 @@ void MVEnvelope_UI::updateLabels()
 {
     for(int i=0;i<NB_ENV_PTS;i++)
     {
-        dialsTime[i]->setLabel(QString::number(timeValues[dialsTime[i]->value()]));
+        float num = timeValues[dialsTime[i]->value()];
+        int nbDigits = 0;
+        if(num < 100) nbDigits = 3;
+        else if(num < 1000) nbDigits = 2;
+        else if(num < 10000) nbDigits = 1;
+        dialsTime[i]->setLabel(QString::number(num/1000,'f',nbDigits));
+
         if(displayMode == AMP)
             dialsValue[i]->setLabel(QString::number((float)dialsValue[i]->value()/100.0,'f',2));
         else
@@ -130,16 +143,23 @@ void MVEnvelope_UI::cbLoopToggled(bool b)
     updateUI();
 }
 
+void MVEnvelope_UI::cbUseToggled(bool b)
+{
+    envData.used = b;
+    envDrawer->update();
+    updateUI();
+}
 void MVEnvelope_UI::setPointTime(int n)
 {
     QObject * sender = QObject::sender();
     int p = 0;
     while (dialsTime[p] != sender)
         p++;
-    envData.points[p].frame = msecToFrames(1000*timeValues[n]);
+    envData.points[p].frame = msecToFrames(timeValues[n]);
     Globals::frame->setTimeScales();
     updateLabels();
 }
+
 int MVEnvelope_UI::indexOfTime(float t)
 {
     bool ok = false;

@@ -55,7 +55,7 @@ void MVCheckBox::paintEvent(QPaintEvent *)
            break;
    }
    painter.setBrush(grad2);
-   painter.drawEllipse(QPointF(width()/2,height()/2),5,5);
+   painter.drawEllipse(QPointF(width()/2,height()/2),2,2);
 }
 void MVCheckBox::midiLearn()
 {

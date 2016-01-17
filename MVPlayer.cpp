@@ -25,6 +25,7 @@
 #include "MVControlManager.h"
 #include "MVFrame.h"
 #include "MVNote.h"
+#include "MVOscillator.h"
 #include "MVGlobals.h"
 
 #include <math.h>
@@ -48,6 +49,12 @@ int process_callback(jack_nframes_t nframes, void *)
     Globals::player->copyBuffers();
     Globals::player->processMidi(nframes);
 
+    return 0;
+}
+int xrun_callback(void *)
+{
+    //std::cout << "xrun" << std::endl;
+    Globals::player->skipBuffer();
     return 0;
 }
 
@@ -89,8 +96,8 @@ MVPlayer::MVPlayer()
     midiChannel = settings.value("midiChannel",0).toInt();
     maxPolyphony = settings.value("maxPolyphony",16).toInt();
 
-    playingNotes = new MVNote*[NB_NOTES];
-    for(int i=0;i<NB_NOTES;i++)
+    playingNotes = new MVNote*[NB_NOTES+1];
+    for(int i=0;i<NB_NOTES+1;i++)
         playingNotes[i] = NULL;
     posNextNote = 0;
 
@@ -112,13 +119,13 @@ void MVPlayer::startJack()
     if ( ! openMidi())
         std::cout << "Couldn't open midi" << std::endl;
 
-    rtprio = 80;
     if (midi.port && ! startThread(&midi.pThread, _midiThread, this, true, 50, 1, false))
     {
         std::cout << ("Failed to start jack midi thread");
     }
 
     jack_set_process_callback( client, process_callback, 0);
+    jack_set_xrun_callback(client, xrun_callback,0);
 
     if (jack_activate (client) != 0)
     {
@@ -165,6 +172,7 @@ void MVPlayer::polyphonyChanged(int n)
 void MVPlayer::removePlayingNote(MVNote * n)
 {
     int i=0;
+
     while (i<maxPolyphony)
     {
         if (playingNotes[i] == n)
@@ -193,6 +201,7 @@ void MVPlayer::startPlay(unsigned char note, unsigned char velo)
 
     if(posNextNote == maxPolyphony)
     {
+       playingNotes[0]->stopNow();
         memmove(playingNotes, playingNotes+1, (maxPolyphony-1)*sizeof(MVNote*));
         playingNotes[maxPolyphony-1] = newNote;
     }
@@ -222,6 +231,12 @@ void MVPlayer::stopAllNotes()
     bSustainOn = false;
 }
 
+void MVPlayer::skipBuffer()
+{
+    for(int i=0;i<NB_NOTES;i++)
+        notes[i]->skipBuffer();
+}
+
 void MVPlayer::setSustainOn(bool b)
 {
     bSustainOn = b;
@@ -229,9 +244,7 @@ void MVPlayer::setSustainOn(bool b)
     {
         for(int i=0;i<maxPolyphony;i++)
             if(playingNotes[i] != NULL && playingNotes[i]->isSustained())
-            {
-                playingNotes[i]->startRelease();
-            }
+                playingNotes[i]->stopPlay();
     }
 }
 
@@ -239,7 +252,6 @@ void MVPlayer::midiChannelChanged(int n)
 {
     if(n>=0 && n<16)
         midiChannel = n-1;
-
 }
 
 void MVPlayer::setDiapason(float n)
@@ -385,7 +397,7 @@ void *MVPlayer::midiThread(void)
 
                 case 0xE0: // pitch bend
                     par = ((midiEvent.data[2] << 7) | midiEvent.data[1]) - 8192 ;
-                    MVNote::pitchBend = powf(powf(TWELFTH_ROOT2,pitchBendRange), (float)par / 8192 );
+                    MVNote::pitchBend = powf(TWELFTH_ROOT2, pitchBendRange * (float)par / 8192 );
                     break;
                 default:
                     break;

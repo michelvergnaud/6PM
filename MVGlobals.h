@@ -20,7 +20,6 @@
 #define GLOBALS_H
 
 #include "MVDefines.h"
-
 #include <QString>
 
 class MVFrame;

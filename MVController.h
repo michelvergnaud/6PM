@@ -52,9 +52,11 @@ public:
     ControllerState getState() const{return state;}
     void setState(ControllerState s){state = s;}
     bool isMidiCCInverted(){return bMidiCCInverted;}
+    void setDefaultValue(int v){defaultValue = v;}
 
 protected:
        ControllerState state;
+       int defaultValue;
        bool bMidiCCInverted;
        int nbFlash;
        QTimer timer;

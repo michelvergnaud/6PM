@@ -70,7 +70,7 @@ MVMainWindow::MVMainWindow() : QMainWindow()
 
     polyphonyAction = new MVSpinBoxAction("Polyphony");
     polyphonyAction->getSpinBox()->setMinimum(1);
-    polyphonyAction->getSpinBox()->setMaximum(127);
+    polyphonyAction->getSpinBox()->setMaximum(NB_NOTES);
     midiMenu->addAction(polyphonyAction);
 
     pitchBendRangeAction = new MVSpinBoxAction("Pitch bend range (semitones)");
@@ -148,7 +148,7 @@ void MVMainWindow::closeEvent(QCloseEvent *event)
 
 void MVMainWindow::midiMenuAboutToShow()
 {
-    midiChannelAction->getSpinBox()->setValue(Globals::player->getMidiChannel());
+    midiChannelAction->getSpinBox()->setValue(Globals::player->getMidiChannel()+1);
     polyphonyAction->getSpinBox()->setValue(Globals::player->getPolyphony());
     pitchBendRangeAction->getSpinBox()->setValue(Globals::player->getPitchBendRange());
 }

@@ -49,7 +49,6 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent*);
     void mouseReleaseEvent(QMouseEvent *);
 private :
-        int defaultValue;
         QString label;
         QColor labelColor, mainColor;
 };

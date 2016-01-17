@@ -105,10 +105,10 @@ int MVFreqEnvelope::releaseLength(int i)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 MVAmpEnvelope::EnvelopeData MVFreqEnvelope::envFreqData[NB_OSC] =
 {
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,
-    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true,
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true,
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true,
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true,
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true,
+    (Point){0,1.0},(Point){22000,1.0},(Point){44000,1.0},(Point){33000,1.0},(Point){960,1.0},(Point){480,1.0},(int)3,(bool)false,(bool)true
  };

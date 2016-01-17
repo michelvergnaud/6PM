@@ -9,6 +9,8 @@ void MVBackground::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     painter.setBackground(*gradient);
     painter.eraseRect(0,0,width(),height());
+//    painter.setPen(Qt::yellow);
+//    painter.drawRect(0,0,width()-1,height()-1);
 }
 
 void MVBackground::setColors(QColor c1, QColor c2, QColor c3)

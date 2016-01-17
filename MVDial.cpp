@@ -46,9 +46,8 @@ void MVDial::setMainColor(QColor c)
     update();
 }
 
-void MVDial::mouseDoubleClickEvent(QMouseEvent * e)
+void MVDial::mouseDoubleClickEvent(QMouseEvent *)
 {
-    QDial::mouseDoubleClickEvent(e);
     setValue(defaultValue);
 }
 

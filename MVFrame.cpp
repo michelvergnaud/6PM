@@ -60,7 +60,7 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
     MVBackground::setColors(Qt::darkGray, QColor::fromRgb(144, 128, 128), QColor::fromRgb(32,32,32));
 
     QGridLayout * mainLayout = new QGridLayout();
-    mainLayout->setSpacing(10);
+    mainLayout->setSpacing(6);
     mainLayout->setContentsMargins(2,2,2,2);
     rightPanel->setLayout(mainLayout);
 
@@ -110,7 +110,7 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
         cbAlgo->addItem("Algorithm "+QString::number(i+1));
 
     algoDrawer = new MVAlgoDrawer();
-    algoDrawer->setMinimumHeight(150);
+    algoDrawer->setMinimumHeight(100);
     cbBank = new QComboBox(this);
     QFont font = cbBank->font();
     font.setPointSize(10);
@@ -143,13 +143,13 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
     MVEnvelope_UI::timeValues = new float[MVEnvelope_UI::nbTimeValues];
 
     for(int i=0;i<10;i++)
-        MVEnvelope_UI::timeValues[i] = (i+1)*0.001;
+        MVEnvelope_UI::timeValues[i] = (i+1);
     for(int i=10;i<28;i++)
-        MVEnvelope_UI::timeValues[i] = (i-10+1)*0.005 + 0.01;
+        MVEnvelope_UI::timeValues[i] = (i-10+1)*5 + 10;
     for(int i=28;i<46;i++)
-        MVEnvelope_UI::timeValues[i] = (i-28+1)*0.05 + 0.1;
+        MVEnvelope_UI::timeValues[i] = (i-28+1)*50 + 100;
     for(int i=46;i<=63;i++)
-        MVEnvelope_UI::timeValues[i] = (i-46+1)*0.5 + 1;
+        MVEnvelope_UI::timeValues[i] = (i-46+1)*500 + 1000;
 
     oscUI = new MVOscillator_UI*[NB_OSC];
     envAmpUI = new MVEnvelope_UI*[NB_OSC];
@@ -158,7 +158,7 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
     for(int i=0;i<NB_OSC;i++)
     {
         QHBoxLayout * oscLayout = new QHBoxLayout();
-        oscLayout->setSpacing(0);
+        oscLayout->setSpacing(2);
         oscLayout->setContentsMargins(0,0,0,0);
         oscBg[i] = new MVBackground();
         oscBg[i]->setLayout(oscLayout);
@@ -186,8 +186,8 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
         envLayout->setStretchFactor(envFreqUI[i],1);
 
         oscLayout->addWidget(envWidget);
-        oscLayout->setStretchFactor(oscUI[i],1);
-        oscLayout->setStretchFactor(envWidget,3);
+        oscLayout->setStretchFactor(oscUI[i],2);
+        oscLayout->setStretchFactor(envWidget,5);
         mainLayout->addWidget(oscBg[i],i/3,i%3);
     }
 
@@ -272,7 +272,6 @@ MVFrame::MVFrame(QWidget *parent) : QSplitter(parent)
     addWidget(leftPanel);
     addWidget(rightPanel);
 
-    setRubberBand(1);
     setChildrenCollapsible(false);
 
     updateUIs();
@@ -751,11 +750,14 @@ void MVFrame::loadMidiMap(QString fileName)
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_amp").arg(i),0).toInt(), oscUI[i]->dialAmp);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_freqratio").arg(i),0).toInt(), oscUI[i]->dialFreqRatio);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_detune").arg(i),0).toInt(), oscUI[i]->dialDetune);
+        Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_random").arg(i),0).toInt(), oscUI[i]->dialRandom);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_iMod").arg(i),0).toInt(), oscUI[i]->dialIMod);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_tremAmp").arg(i),0).toInt(), oscUI[i]->dialTremoloAmp);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_tremFreq").arg(i),0).toInt(), oscUI[i]->dialTremoloFreq);
+        Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_tremShape").arg(i),0).toInt(), oscUI[i]->dialTremoloShape);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_vibAmp").arg(i),0).toInt(), oscUI[i]->dialVibratoAmp);
         Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_vibFreq").arg(i),0).toInt(), oscUI[i]->dialVibratoFreq);
+        Globals::controlmanager->registerAssign(settings.value(QString("osc%1midiCC_vibShape").arg(i),0).toInt(), oscUI[i]->dialVibratoShape);
 
         for (int j=0;j<NB_ENV_PTS;j++)
         {
@@ -792,11 +794,14 @@ void MVFrame::saveMidiMap(QString fileName)
         settings.setValue(QString("osc%1midiCC_amp").arg(i), oscUI[i]->dialAmp->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_freqratio").arg(i), oscUI[i]->dialFreqRatio->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_detune").arg(i), oscUI[i]->dialDetune->getAssignNumber());
+        settings.setValue(QString("osc%1midiCC_random").arg(i), oscUI[i]->dialRandom->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_iMod").arg(i), oscUI[i]->dialIMod->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_tremAmp").arg(i), oscUI[i]->dialTremoloAmp->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_tremFreq").arg(i), oscUI[i]->dialTremoloFreq->getAssignNumber());
+        settings.setValue(QString("osc%1midiCC_tremShape").arg(i), oscUI[i]->dialTremoloShape->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_vibAmp").arg(i), oscUI[i]->dialVibratoAmp->getAssignNumber());
         settings.setValue(QString("osc%1midiCC_vibFreq").arg(i), oscUI[i]->dialVibratoFreq->getAssignNumber());
+        settings.setValue(QString("osc%1midiCC_vibShape").arg(i), oscUI[i]->dialVibratoShape->getAssignNumber());
 
         for (int j=0;j<NB_ENV_PTS;j++)
         {
@@ -846,11 +851,15 @@ void MVFrame::loadPreset(QString fileName)
         MVNote::oscData[i].amp = settings.value(QString("osc%1amp").arg(i),0.5).toFloat();
         MVNote::oscData[i].freqratio = settings.value(QString("osc%1freqratio").arg(i),1).toFloat();
         MVNote::oscData[i].detune = settings.value(QString("osc%1detune").arg(i),1).toFloat();
+        MVNote::oscData[i].randomize = settings.value(QString("osc%1random").arg(i),0).toFloat();
         MVNote::oscData[i].iMod = settings.value(QString("osc%1iMod").arg(i),0.5).toFloat();
         MVNote::oscData[i].tremAmp = settings.value(QString("osc%1tremAmp").arg(i),0).toFloat();
         MVNote::oscData[i].tremFreq = settings.value(QString("osc%1tremFreq").arg(i),5).toFloat();
+        MVNote::oscData[i].tremShape = settings.value(QString("osc%1tremShape").arg(i),0).toInt();
+
         MVNote::oscData[i].vibAmp = settings.value(QString("osc%1vibAmp").arg(i),0).toFloat();
         MVNote::oscData[i].vibFreq = settings.value(QString("osc%1vibFreq").arg(i),5).toFloat();
+        MVNote::oscData[i].vibShape = settings.value(QString("osc%1vibShape").arg(i),0).toInt();
 
         for (int j=0;j<NB_ENV_PTS;j++)
         {
@@ -873,6 +882,7 @@ void MVFrame::loadPreset(QString fileName)
         MVFreqEnvelope::envFreqData[i].sustainPoint = settings.value(QString("envFreq%1sustainPoint").arg(i),3).toInt();
         MVAmpEnvelope::envAmpData[i].loop = settings.value(QString("envAmp%1loop").arg(i),false).toBool();
         MVFreqEnvelope::envFreqData[i].loop = settings.value(QString("envFreq%1loop").arg(i),false).toBool();
+        MVFreqEnvelope::envFreqData[i].used = settings.value(QString("envFreq%1used").arg(i),true).toBool();
 
         MVAmpEnvelope::envAmpData[i].points[NB_ENV_PTS-1].value = 0.0;
         MVFreqEnvelope::envFreqData[i].points[NB_ENV_PTS-1].value = 1.0;
@@ -899,22 +909,14 @@ void MVFrame::savePreset(QString fileName)
         settings.setValue(QString("osc%1pan").arg(i), MVNote::oscData[i].pan);
         settings.setValue(QString("osc%1amp").arg(i), MVNote::oscData[i].amp);
         settings.setValue(QString("osc%1freqratio").arg(i), MVNote::oscData[i].freqratio);
-        settings.setValue(QString("osc%1detune").arg(i), MVNote::oscData[i].detune);
+        settings.setValue(QString("osc%1random").arg(i), MVNote::oscData[i].randomize);
         settings.setValue(QString("osc%1iMod").arg(i), MVNote::oscData[i].iMod);
         settings.setValue(QString("osc%1tremAmp").arg(i), MVNote::oscData[i].tremAmp);
         settings.setValue(QString("osc%1tremFreq").arg(i), MVNote::oscData[i].tremFreq);
+        settings.setValue(QString("osc%1tremShape").arg(i), MVNote::oscData[i].tremShape);
         settings.setValue(QString("osc%1vibAmp").arg(i), MVNote::oscData[i].vibAmp);
         settings.setValue(QString("osc%1vibFreq").arg(i), MVNote::oscData[i].vibFreq);
-
-        settings.setValue(QString("osc%1midiCC_pan").arg(i), oscUI[i]->sliderPan->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_amp").arg(i), oscUI[i]->dialAmp->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_freqratio").arg(i), oscUI[i]->dialFreqRatio->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_detune").arg(i), oscUI[i]->dialDetune->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_iMod").arg(i), oscUI[i]->dialTremoloAmp->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_tremAmp").arg(i), oscUI[i]->dialTremoloFreq->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_tremFreq").arg(i), oscUI[i]->dialVibratoAmp->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_vibAmp").arg(i), oscUI[i]->dialVibratoFreq->getAssignNumber());
-        settings.setValue(QString("osc%1midiCC_vibFreq").arg(i), oscUI[i]->dialIMod->getAssignNumber());
+        settings.setValue(QString("osc%1vibShape").arg(i), MVNote::oscData[i].vibShape);
 
         for (int j=0;j<NB_ENV_PTS;j++)
         {
@@ -927,6 +929,7 @@ void MVFrame::savePreset(QString fileName)
         settings.setValue(QString("envFreq%1sustainPoint").arg(i), MVFreqEnvelope::envFreqData[i].sustainPoint);
         settings.setValue(QString("envAmp%1loop").arg(i), MVAmpEnvelope::envAmpData[i].loop);
         settings.setValue(QString("envFreq%1loop").arg(i), MVFreqEnvelope::envFreqData[i].loop);
+        settings.setValue(QString("envFreq%1used").arg(i), MVFreqEnvelope::envFreqData[i].used);
     }
 }
 

@@ -28,7 +28,7 @@ class MVAmpEnvelope
 public:
     struct Point
     {
-        unsigned long frame;
+        unsigned int frame;
         float value;
     };
     struct  EnvelopeData
@@ -36,6 +36,7 @@ public:
         Point points[NB_ENV_PTS];
         int sustainPoint;
         bool loop;
+        bool used;
     };
 
     MVAmpEnvelope(const EnvelopeData &, const float & a, int n);
@@ -56,7 +57,11 @@ public:
     static int releaseLength(int);
 
     static inline int getSustainPoint(int i){return envAmpData[i].sustainPoint;}
-    static MVAmpEnvelope::EnvelopeData envAmpData[NB_OSC];
+    static EnvelopeData envAmpData[NB_OSC];
+
+    static EnvelopeData envelopeClipboard;
+    static bool bEnvelopeClipboardEmpty;
+    static int envelopeClipboardMode;
 
 protected:
     float v;

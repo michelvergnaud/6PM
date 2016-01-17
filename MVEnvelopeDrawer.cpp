@@ -44,10 +44,14 @@ MVEnvelopeDrawer::MVEnvelopeDrawer(MVAmpEnvelope::EnvelopeData & ed, int & n, Di
 
     menu = new QMenu();
     menu->addAction(sustainPointAction);
+    menu->addAction("Copy",this,SLOT(copyEnvelope()));
+    pasteAction = new QAction("Paste", this);
+    menu->addAction(pasteAction);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu(QPoint)));
     connect(sustainPointAction->getSpinBox (), SIGNAL(valueChanged(int)),this,SLOT(sustainPointChanged(int)));
+    connect(pasteAction,SIGNAL(triggered()),this,SLOT(pasteEnvelope()));
 }
 MVEnvelopeDrawer::~MVEnvelopeDrawer()
 {
@@ -229,6 +233,7 @@ void MVEnvelopeDrawer::wheelEvent(QWheelEvent * e)
 void MVEnvelopeDrawer::contextMenu(QPoint)
 {
     sustainPointAction->getSpinBox()->setValue(envData.sustainPoint+1);
+    pasteAction->setEnabled( ! MVAmpEnvelope::bEnvelopeClipboardEmpty);
     menu->popup(QCursor::pos());
 }
 
@@ -238,4 +243,29 @@ void MVEnvelopeDrawer::sustainPointChanged(int n)
     if(n>0)
         envData.loop = false;
     Globals::frame->updateUIs();
+}
+
+void MVEnvelopeDrawer::copyEnvelope()
+{
+    MVAmpEnvelope::envelopeClipboard = envData;
+    MVAmpEnvelope::bEnvelopeClipboardEmpty = false;
+    MVAmpEnvelope::envelopeClipboardMode = (displayMode == AMP ? 0 : 1);
+}
+void MVEnvelopeDrawer::pasteEnvelope()
+{
+    if( ! MVAmpEnvelope::bEnvelopeClipboardEmpty)
+    {
+        if(displayMode == MVAmpEnvelope::envelopeClipboardMode)
+            for(int i=0;i<NB_ENV_PTS;i++)
+                envData.points[i] = MVAmpEnvelope::envelopeClipboard.points[i];
+        else
+            for(int i=0;i<NB_ENV_PTS;i++)
+                envData.points[i].frame = MVAmpEnvelope::envelopeClipboard.points[i].frame;
+
+        envData.loop = MVAmpEnvelope::envelopeClipboard.loop;
+        envData.sustainPoint = MVAmpEnvelope::envelopeClipboard.sustainPoint;
+        envData.used = MVAmpEnvelope::envelopeClipboard.used;
+
+        Globals::frame->updateUIs();
+    }
 }

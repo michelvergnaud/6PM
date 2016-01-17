@@ -33,6 +33,17 @@ MVSlider::MVSlider()
     connect(cbInvertAction->getCheckBox(), SIGNAL(toggled(bool)), this, SLOT(invertMidiCC(bool)));
     connect(&timer,SIGNAL(timeout()),this,SLOT(startWaitingMessage()));
 }
+
+void MVSlider::mouseDoubleClickEvent(QMouseEvent *)
+{
+    setValue(defaultValue);
+}
+
+void MVSlider::mouseReleaseEvent(QMouseEvent *)
+{
+    // Do nothing for doubleclick to work -> set default value
+}
+
 void MVSlider::paintEvent(QPaintEvent *e)
 {
     QWidget::paintEvent(e);

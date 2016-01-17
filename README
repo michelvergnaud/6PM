@@ -13,7 +13,10 @@ sudo apt-get install libasound2-dev
 
 - jack
 to intall it :
+sudo apt-get install libjack-dev
+or
 sudo apt-get install libjack-jackd2-dev
+according to which jack version is installed on your system.
 
 g++ compiler may help :)
 sudo apt-get install g++
@@ -50,7 +53,10 @@ sudo apt-get install libasound2-dev
 
 - jack
 Pour l'installer :
+sudo apt-get install libjack-dev
+ou
 sudo apt-get install libjack-jackd2-dev
+selon la version de jack installée sur votre système.
 
 Le compilateur g++ peut servir :)
 sudo apt-get install g++

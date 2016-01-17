@@ -53,6 +53,7 @@ public:
     void stopPlay(unsigned char note);
 
     void stopAllNotes();
+    void skipBuffer();
     void setSustainOn(bool);
     void setDiapason(float);
 
@@ -63,27 +64,16 @@ public:
 
     inline void constructBuffer()
     {
-        memset(buffer_L,0,bufferSize*sizeof(float));
-        memset(buffer_R,0,bufferSize*sizeof(float));
+        memset(buffer_L,0.0f,bufferSize*sizeof(float));
+        memset(buffer_R,0.0f,bufferSize*sizeof(float));
 
         for(unsigned int i=0; i<bufferSize;i++)
         {
-//            for(int j = 0; j<NB_NOTES;j++)
-//            {
-//                MVNote * note = notes[j];
-//                if( note != NULL && note->isPlaying())
-//                    note->addToMainBuffer(i, buffer_L[i], buffer_R[i] );
-//            }
-
             for(int j = 0; j<posNextNote;j++)
             {
                 MVNote * note = playingNotes[j];
-
                 if( note != NULL && note->isPlaying())
-                {
-                    //sem_wait(&note->semFinished);
                     note->addToMainBuffer(i, buffer_L[i], buffer_R[i] );
-                }
             }
             buffer_L[i]*=mainVolume;
             buffer_R[i]*=mainVolume;
@@ -92,8 +82,8 @@ public:
 
     inline void copyBuffers()
     {
-        memcpy(out_L, buffer_L,bufferSize*sizeof(float));
-        memcpy(out_R, buffer_R,bufferSize*sizeof(float));
+        memcpy(jack_port_get_buffer(output_port_left, bufferSize), buffer_L,bufferSize*sizeof(float));
+        memcpy(jack_port_get_buffer(output_port_right, bufferSize), buffer_R,bufferSize*sizeof(float));
     }
 
     bool processMidi(jack_nframes_t nframes);
@@ -121,7 +111,7 @@ private:
     static jack_nframes_t sampleRate;
     static jack_nframes_t bufferSize;
     long offset;
-    int rtprio;
+
     struct {
         jack_port_t*       port;
         jack_ringbuffer_t *ringBuf;

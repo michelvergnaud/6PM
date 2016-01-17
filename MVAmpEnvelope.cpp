@@ -87,6 +87,7 @@ float MVAmpEnvelope::nextFrame()
 
 void MVAmpEnvelope::reset()
 {
+   nbStepsFadeOut = 0; 
    bRestart = true;
    bFinished = false;
 }
@@ -132,10 +133,15 @@ int MVAmpEnvelope::releaseLength(int i)
 
 ////////////////////////////////////////////////////////////////
 MVAmpEnvelope::EnvelopeData MVAmpEnvelope::envAmpData[NB_OSC] =
-  {  (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,
-     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,
-     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,
-     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,
-     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,
-     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false
+  {  (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true,
+     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true,
+     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true,
+     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true,
+     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true,
+     (MVAmpEnvelope::Point){96,0},(MVAmpEnvelope::Point){4000,1},(MVAmpEnvelope::Point){3000,1},(MVAmpEnvelope::Point){2000,1},(MVAmpEnvelope::Point){1000,0.5},(MVAmpEnvelope::Point){1000,0.5}, (int)3 ,(bool)false,(bool)true
   };
+
+MVAmpEnvelope::EnvelopeData MVAmpEnvelope::envelopeClipboard ;
+bool MVAmpEnvelope::bEnvelopeClipboardEmpty = true;
+int MVAmpEnvelope::envelopeClipboardMode = 0;
+

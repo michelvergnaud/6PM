@@ -43,6 +43,8 @@ private slots:
     void invertMidiCC(bool);
 protected:
     void paintEvent(QPaintEvent *e);
+    void mouseDoubleClickEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent *);
 
  };
 

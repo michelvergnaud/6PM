@@ -25,7 +25,7 @@
 
 class MVDial;
 
-class MVOscillator_UI : public MVBackground
+class MVOscillator_UI : public QWidget
 {
 Q_OBJECT
 
@@ -38,15 +38,19 @@ public:
     MVDial * dialAmp;
     MVDial * dialFreqRatio;
     MVDial * dialDetune;
+    MVDial * dialRandom;
     MVDial * dialIMod;
     MVDial * dialTremoloAmp;
     MVDial * dialTremoloFreq;
+    MVDial * dialTremoloShape;
     MVDial * dialVibratoAmp;
     MVDial * dialVibratoFreq;
+    MVDial * dialVibratoShape;
 
 private:
     MVNote::OscillatorData & data;
     void updateLabels();
+    void computeFreq();
     int numOsc;
 
 private slots:
@@ -54,11 +58,14 @@ private slots:
     void setAmp(int);
     void setFreqRatio(int);
     void setDetune(int);
+    void setRandom(int);
     void setIndMod(int);
     void setTremAmp(int);
     void setTremFreq(int);
+    void setTremShape(int);
     void setVibAmp(int);
     void setVibFreq(int);
+    void setVibShape(int);
 };
 
 #endif // MVOSCILLATOR_UI_H

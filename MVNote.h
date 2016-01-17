@@ -51,8 +51,12 @@ public:
         float iMod;
         float tremAmp;
         float tremFreq;
+        int tremShape;
         float vibAmp;
         float vibFreq;
+        int vibShape;
+        float instantFreq;
+        float randomize;
     };
 
     enum AlgoType {PREDEF, USER};
@@ -60,7 +64,7 @@ public:
     void startPlay(unsigned char);
     void startRelease();
     void stopPlay();
-    inline void stopNow(){bPlaying = false;}
+    inline void stopNow(){bPlaying = false;sem_post(&sem);/*pThread=0;*/}
     inline const float & getFreq(){return freq;}
     inline const float & getAmp(){return amp;}
     inline void sustain(){ bSustainOn = true;}
@@ -69,6 +73,7 @@ public:
     inline const MVOscillator & getOscillator(int i){return *oscillators[i];}
 
     void fillBuffer();
+    void skipBuffer();
 
     inline void addToMainBuffer(unsigned int i, float &left, float&right)
     {
@@ -100,11 +105,9 @@ public:
     static void createAlgo(QString);
     static AlgoType algoType;
 
-    //sem_t semFinished;
-
 private:
 
-    long dt;
+    int dt;
     float t;
     float freq;
     float panL[NB_OSC];

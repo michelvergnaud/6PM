@@ -48,6 +48,7 @@ public:
 private:
     DisplayMode displayMode;
     MVCheckBox * cbLoop;
+    MVCheckBox * cbUse;
     int saveSustainPoint;
     MVEnvelopeDrawer * envDrawer;
     MVAmpEnvelope::EnvelopeData & envData;
@@ -59,6 +60,7 @@ private slots:
     void setPointTime(int f);
     void setPointValue(int v);
     void cbLoopToggled(bool);
+    void cbUseToggled(bool);
 };
 
 #endif // MVEnvelope_UI_H

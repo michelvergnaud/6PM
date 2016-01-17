@@ -47,6 +47,8 @@ public:
 private slots:
     void contextMenu(QPoint);
     void sustainPointChanged(int);
+    void copyEnvelope();
+    void pasteEnvelope();
 
 protected:
     void paintEvent ( QPaintEvent *) ;
@@ -69,6 +71,7 @@ private:
     const int & numOsc;
     float zoomX, zoomY;
     QMenu * menu;
+    QAction * pasteAction;
     MVSpinBoxAction * sustainPointAction;
 };
 
