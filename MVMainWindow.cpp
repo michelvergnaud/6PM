@@ -87,7 +87,7 @@ MVMainWindow::MVMainWindow() : QMainWindow()
 
     QMenu * presetsMenu = new QMenu(tr("Presets"), this);
     QAction * exportAction = new QAction("Export preset",this);
-    QAction * importAction = new QAction("Imort preset",this);
+    QAction * importAction = new QAction("Import preset",this);
     QAction * midiExportAction = new QAction("Export midi map",this);
     QAction * midiImportAction = new QAction("Import midi map",this);
 
