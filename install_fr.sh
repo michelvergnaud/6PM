@@ -9,7 +9,11 @@ echo "cd src"
 cd src
 
 echo "Suppression des fichiers de compilation précédente"
+if [ -d .../build ]
+then
 rm ../build/*
+fi
+
 echo "qmake"
 
 qmake -o ../build/Makefile

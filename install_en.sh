@@ -9,8 +9,10 @@ echo "cd src"
 cd src
 
 echo "Deleting previous compilation files"
+if [ -d .../build ]
+then
 rm ../build/*
-echo "qmake"
+fi
 
 qmake -o ../build/Makefile
 if [ $? -ne 0 ]
