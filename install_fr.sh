@@ -9,7 +9,7 @@ echo "cd src"
 cd src
 
 echo "Suppression des fichiers de compilation précédente"
-if [ -d .../build ]
+if [ -d ../build ]
 then
 rm ../build/*
 fi
