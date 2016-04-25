@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="icon">images/icon.png</file>
+        <file alias="stop">images/stop.png</file>
+        <file alias="loopOff">images/loop_off.png</file>
+        <file alias="loopOn">images/loop_on.png</file>
+        <file alias="usedOff">images/usedOff.png</file>
+        <file alias="usedOn">images/usedOn.png</file>
+        <file alias="down">images/down.png</file>
+        <file alias="up">images/up.png</file>
+        <file alias="sine">images/sine.png</file>
+        <file alias="sawup">images/sawup.png</file>
+        <file alias="rect">images/rect.png</file>
+        <file alias="sawdown">images/sawdown.png</file>
+    </qresource>
+</RCC>

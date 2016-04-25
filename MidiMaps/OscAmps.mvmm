@@ -35,7 +35,6 @@ envAmp52midiCC_frame=0
 envAmp53midiCC_frame=0
 envAmp54midiCC_frame=0
 envAmp55midiCC_frame=0
-mainVolume=7
 osc0midiCC_amp=74
 osc0midiCC_detune=0
 osc0midiCC_freqratio=0

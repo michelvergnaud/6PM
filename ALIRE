@@ -1,0 +1,39 @@
+
+------------------
+Installation de 6PM
+------------------
+
+Bibliothèques requises :
+- qt5
+Pour l'installer :
+sudo apt-get install qt5-default
+
+- asound
+Pour l'installer :
+sudo apt-get install libasound2-dev
+
+- jack
+Pour l'installer :
+sudo apt-get install libjack-dev
+ou
+sudo apt-get install libjack-jackd2-dev
+selon la version de jack installée sur votre système.
+
+Le compilateur g++ peut servir :)
+sudo apt-get install g++
+
+------------------
+Installation
+------------------
+
+chmod +x ./install_fr.sh
+
+./install_fr.sh
+
+Ce script compile puis copie l'exécutable dans /usr/local/bin (mot de passe administrateur requis).
+Il copie également les fichiers presets et midimaps dans ~/.6pm et dans /usr/local/share
+
+
+Si tout a fonctionné correctement, la commande
+6pm 
+lance le logiciel.

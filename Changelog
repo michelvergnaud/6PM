@@ -1,28 +1,48 @@
-2016-01-12
-Version 0.8.1
-Bug fixed : rounding errors on times values making unwanted moves of envelopes knobs, only on 32bits systems.
+2016-04-23
+Version 0.9
+
+* New interface 
+	For better usability especially on small height resolution screens :
+    - midi map, algorithm and bank boxes on left panel can be hidden.
+    - vibrato and tremolo knobs moved in a popup dialog and are replaced with a LFO button.
+    - Algorithm editor moved in a popup window.
+	Optimized buttons shape.
+	X and Y tick values on envelope graphs.
+	Values on main volume and oscillators pan sliders.
+* Run without GUI with --nogui option. Should reduce cpu load, specially on small machines.
+* English and French language packets.
+* Deep code reorganisation.
+* New sound features :
+    - filter (low-pass, high-pass, band-pass, band-reject) with settings for main frequency and q factor and a frequency envelope.
+    - oscillators frequencies vary from -48 to 48 semitones instead of -24 to 24.
+    - each oscillator frequency can be absolute or note-related.
+* Presets modifications are no longer lost when changing preset. User is prompted to save or not when leaving and can save at any time.
+* New presets.
+* New presets menu to import, export, reset, save modified presets and open presets folders.
+* New install script.
+* Lot of bugs fixed.
 
 2015-12-31
 Version 0.8
-Copy-paste for envelopes
-Bug fixed on midi channel spinbox
-Bug fixed when polyphony overload
+Copy-paste for envelopes.
+Bug fixed on midi channel spinbox.
+Bug fixed when polyphony overload.
 
 2015-12-27
 Version 0.7
-Threads management improved in case of xrun
-Frequency randomizer for each oscillator : much warmer sounds
-Button to switch on-off frequency envelopes : reduce cpu load
-Bug fixed on midi channel spinbox
+Threads management improved in case of xrun.
+Frequency randomizer for each oscillator : much warmer sounds.
+Button to switch on-off frequency envelopes : reduce cpu load.
+Bug fixed on midi channel spinbox.
 
 2015-11-20
 Version 0.6
-Cpu load reduced
-Four waveshapes for tremolo and vibrato lfos
-New interface to add Lfo wave shape controls
+Cpu load reduced.
+Four waveshapes for tremolo and vibrato lfos.
+New interface to add Lfo wave shape controls.
 
 2015-09-18
-Should fit in small screens (768 height)
+Should fit in small screens (768 height).
 
 2015-08-14
 Version 0.5
@@ -40,7 +60,7 @@ Drawing connections between oscillators when editing algo should be easier.
 
 2015-05-12
 Version 0.15
-Presets and midimaps files are now copied from /usr/share/6PM into ~/.6pm at first run
+Presets and midimaps files are now copied from /usr/share/6PM into ~/.6pm at first run.
 
 2015-05-10
-Initial commit
+Initial commit.

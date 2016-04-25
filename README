@@ -1,17 +1,17 @@
 
 ------------------
-6PM Install 
+6PM Installation
 ------------------
  Needed libraries
 - qt5
 to intall it :
 sudo apt-get install qt5-default
 
-- asound
+- asound-dev
 to intall it :
 sudo apt-get install libasound2-dev
 
-- jack
+- jack-dev
 to intall it :
 sudo apt-get install libjack-dev
 or
@@ -21,56 +21,19 @@ according to which jack version is installed on your system.
 g++ compiler may help :)
 sudo apt-get install g++
 
-GO into folder
-cd 6PM_distrib
+------------------
+Installation
+------------------
+
 chmod +x ./install.sh
 ./install.sh
 
-This script compiles then copy executable into /usr/local/bin (root password needed).
-It also copy presets et midimaps files into ~/.6pm
-
-In case of errors you may execute step by step instructions in this script.
+This script compiles executable into build folder.
+If successful it copies :
+	- executable file 6pm into /usr/local/bin (root password needed)
+	- Presets and Midimaps folders into ~/.6pm and /usr/local/share
+	- user manual 6PM_DocEN.pdf into /usr/local/share/6pm/Doc
 
 If everything works fine, type
 6pm
 to run software.
-
-
-
-
-------------------
-Installation de 6PM
-------------------
-
-Bibliothèques requises :
-- qt5
-Pour l'installer :
-sudo apt-get install qt5-default
-
-- asound
-Pour l'installer :
-sudo apt-get install libasound2-dev
-
-- jack
-Pour l'installer :
-sudo apt-get install libjack-dev
-ou
-sudo apt-get install libjack-jackd2-dev
-selon la version de jack installée sur votre système.
-
-Le compilateur g++ peut servir :)
-sudo apt-get install g++
-
-Aller dans le répertoire 
-cd 6PM_distrib
-chmod +x ./install.sh
-./install.sh
-
-Ce script compile puis copie l'exécutable dans /usr/local/bin (mot de passe root requis).
-Il copie également les fichiers presets et midimaps dans ~/.6pm
-
-En cas d'erreurs on peut exécuter une par une les instructions de ce script.
-
-Si tout a fonctionné correctement, la commande
-6pm 
-lance le logiciel.
