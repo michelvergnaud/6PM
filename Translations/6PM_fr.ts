@@ -248,17 +248,17 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="891"/>
         <source>Impossible to create directory</source>
-        <translation></translation>
+        <translation>Impossible de créer le dossier</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="905"/>
         <source>Rename bank</source>
-        <translation></translation>
+        <translation>Renommer la banque</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="905"/>
         <source>Impossible to rename directory</source>
-        <translation></translation>
+        <translation>Impossible de renommer le dossier</translation>
     </message>
 </context>
 <context>
@@ -266,57 +266,57 @@
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="43"/>
         <source>Midi channel</source>
-        <translation></translation>
+        <translation>Canal midi</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="49"/>
         <source>Polyphony</source>
-        <translation></translation>
+        <translation>Polyphonie</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="54"/>
         <source>Pitch bend range (semitones)</source>
-        <translation></translation>
+        <translation>Plage de pitchbend (demi-ton)</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="60"/>
         <source>Help</source>
-        <translation></translation>
+        <translation>Aide</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="61"/>
         <source>User guide</source>
-        <translation></translation>
+        <translation>Guide de l&apos;utilisateur</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="62"/>
         <source>About</source>
-        <translation></translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="68"/>
         <source>Presets</source>
-        <translation></translation>
+        <translation>Préréglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="69"/>
         <source>Modified presets</source>
-        <translation></translation>
+        <translation>Préréglages modifiés</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="70"/>
         <source>Export current preset</source>
-        <translation></translation>
+        <translation>Exportation du préréglage courant</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="71"/>
         <source>Import preset</source>
-        <translation></translation>
+        <translation>Importation d&apos;un préréglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="72"/>
         <source>Restore factory presets</source>
-        <translation></translation>
+        <translation>Restaurer les préréglages d&apos;origine</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="73"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="148"/>
         <source>6PM Export current preset</source>
-        <translation></translation>
+        <translation>6PM Exportation du préréglage courant</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="159"/>
@@ -334,44 +334,45 @@
         <location filename="../src/UI/MVMainWindow.cpp" line="182"/>
         <location filename="../src/UI/MVMainWindow.cpp" line="196"/>
         <source>6PM Import preset</source>
-        <translation></translation>
+        <translation>6PM Importation d&apos;un préréglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="166"/>
         <source>Overwrite preset </source>
-        <translation></translation>
+        <translation>Remplacer le préréglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="182"/>
         <source>Impossible to import </source>
-        <translation></translation>
+        <translation>Impossible d&apos;importer</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="196"/>
         <source>Overwrite existing presets ? 
 (They will be saved in %1)</source>
-        <translation></translation>
+        <translation>Remplacer les préréglages existants ?
+(Ils seront sauvegardés dans %1)</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="204"/>
         <location filename="../src/UI/MVMainWindow.cpp" line="220"/>
         <source>6PM restore presets</source>
-        <translation></translation>
+        <translation>6PM restauration des préréglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="204"/>
         <source>Impossible to find presets</source>
-        <translation></translation>
+        <translation>Impossible de trouver les préréglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="220"/>
         <source>Impossible to copy presets</source>
-        <translation></translation>
+        <translation>Impossible de copier les préréglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="260"/>
         <source>About 6PM</source>
-        <translation></translation>
+        <translation>À propos de 6PM</translation>
     </message>
 </context>
 <context>
@@ -379,17 +380,17 @@
     <message>
         <location filename="../src/UI/MVOscillator_UI.cpp" line="123"/>
         <source>Oscillator %1 tremolo</source>
-        <translation></translation>
+        <translation>Oscillateur %1 : trémolo</translation>
     </message>
     <message>
         <location filename="../src/UI/MVOscillator_UI.cpp" line="163"/>
         <source>Frequency</source>
-        <translation></translation>
+        <translation>Fréquence</translation>
     </message>
     <message>
         <location filename="../src/UI/MVOscillator_UI.cpp" line="191"/>
         <source>Oscillator %1 vibrato</source>
-        <translation></translation>
+        <translation>Oscillateur %1 : vibrato</translation>
     </message>
 </context>
 <context>
@@ -397,32 +398,32 @@
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="35"/>
         <source>6PM modified presets</source>
-        <translation></translation>
+        <translation>6PM préréglages modifiés</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="44"/>
         <source>Bank</source>
-        <translation></translation>
+        <translation>Banque</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="44"/>
         <source>Preset</source>
-        <translation></translation>
+        <translation>Préréglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="71"/>
         <source>Don&apos;t save</source>
-        <translation></translation>
+        <translation>Ne pas sauvegarder</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="72"/>
         <source>Save selected</source>
-        <translation></translation>
+        <translation>Sauvegarder la sélection</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="73"/>
         <source>Cancel</source>
-        <translation></translation>
+        <translation>Annuler</translation>
     </message>
 </context>
 <context>
@@ -430,12 +431,12 @@
     <message>
         <location filename="../src/UI/MVSlider.cpp" line="82"/>
         <source>L</source>
-        <translation></translation>
+        <translation>G</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSlider.cpp" line="83"/>
         <source>R</source>
-        <translation></translation>
+        <translation>D</translation>
     </message>
 </context>
 <context>
@@ -443,68 +444,68 @@
     <message>
         <location filename="../src/Synth/MVControlManager.cpp" line="152"/>
         <source>None</source>
-        <translation></translation>
+        <translation>Aucune</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="39"/>
         <source>Midi Learn</source>
-        <translation></translation>
+        <translation>Midi-learn</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="40"/>
         <source>Remove assignment</source>
-        <translation></translation>
+        <translation>Supprimer l&apos;assignement</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="41"/>
         <source>Invert midi CC</source>
-        <translation></translation>
+        <translation>Inverser</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="43"/>
         <location filename="../src/UI/MVControllerWidget.cpp" line="86"/>
         <source>Not assigned</source>
-        <translation></translation>
+        <translation>Non assigné</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="80"/>
         <source>Assigned to : control %1</source>
-        <translation></translation>
+        <translation>Assigné au contrôle %1</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="77"/>
         <source>User manual : see Help menu</source>
-        <translation></translation>
+        <translation>Manuel utilisateur : voir le menu Aide</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="78"/>
         <source>or :</source>
-        <translation></translation>
+        <translation>ou :</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="86"/>
         <source>Checking directory ~/.6pm</source>
-        <translation></translation>
+        <translation>Vérification du dossier ~/.6pm </translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="93"/>
         <source>Failed to create directory ~/.6pm</source>
-        <translation></translation>
+        <translation>Impossible de créer le dossier ~/.6pm  </translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="96"/>
         <source>Directory  ~/.6pm created</source>
-        <translation></translation>
+        <translation>Dossier  ~/.6pm créé</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="97"/>
         <source>Copying files</source>
-        <translation></translation>
+        <translation>Copie des fichiers</translation>
     </message>
     <message>
         <location filename="../src/main.cpp" line="101"/>
         <source>Failed to copy presets and midimaps files</source>
-        <translation></translation>
+        <translation>Impossible de copier le fichiers de préréglages et midimaps</translation>
     </message>
 </context>
 </TS>
