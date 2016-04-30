@@ -263,7 +263,7 @@ void MVMainWindow::showUserGuide()
 {
     QLocale locale;
     if(locale.language() == QLocale::French)
-        QDesktopServices::openUrl(QUrl("/usr/share/6pm/Manuals/6PM_DocFR.pdf"));
+        QDesktopServices::openUrl(QUrl("/usr/share/6pm/Doc/6PM_DocFR.pdf"));
     else
-        QDesktopServices::openUrl(QUrl("/usr/share/6pm/Manuals/6PM_DocEN.pdf"));
+        QDesktopServices::openUrl(QUrl("/usr/share/6pm/Doc/6PM_DocEN.pdf"));
 }
