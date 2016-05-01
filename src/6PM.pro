@@ -84,5 +84,5 @@ LIBS += -lasound \
     -ljack \
     -lpthread
 LIBS += -L/usr/lib:/usr/local/lib
-RESOURCES += 6pm.qrc
+RESOURCES += ./6pm.qrc
 TARGET = 6pm
