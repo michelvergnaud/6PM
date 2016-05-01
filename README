@@ -25,6 +25,8 @@ sudo apt-get install g++
 Installation
 ------------------
 
+Note: this installation process needs using sudo on your system
+
 chmod +x ./install.sh
 ./install.sh
 
