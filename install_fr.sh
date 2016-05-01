@@ -90,7 +90,7 @@ sudo mkdir /usr/local/share/6pm/Doc
 fi
 sudo cp -R ./Doc/6PM_DocFR.pdf /usr/local/share/6pm/Doc
 
-echo "Copie du fichier 6PM_fr.qm dans /usr/local/share:Tanslations"
+echo "Copie du fichier 6PM_fr.qm dans /usr/local/share/Tanslations"
 
 if [ ! -d /usr/local/share/6pm/Translations ]
 then
