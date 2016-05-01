@@ -176,7 +176,7 @@ void MVFreqEnvelopeDrawer::paintEvent(QPaintEvent *)
 void MVFreqEnvelopeDrawer::contextMenu(QPoint)
 {
     sustainPointAction->getSpinBox()->setValue(envData.sustainPoint+1);
-    pasteAction->setEnabled( ! envelopeClipboard.typeEnv > -1);
+    pasteAction->setEnabled( ! (envelopeClipboard.typeEnv > -1));
     menu->popup(QCursor::pos());
 }
 void MVFreqEnvelopeDrawer::sustainPointChanged(int n)

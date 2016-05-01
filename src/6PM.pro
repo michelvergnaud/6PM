@@ -84,9 +84,5 @@ LIBS += -lasound \
     -ljack \
     -lpthread
 LIBS += -L/usr/lib:/usr/local/lib
-OTHER_FILES += 
-RESOURCES += ./6pm.qrc
-
-TRANSLATIONS = 6PM_fr.ts
 
 TARGET = 6pm
