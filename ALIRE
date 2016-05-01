@@ -26,6 +26,8 @@ sudo apt-get install g++
 Installation
 ------------------
 
+Note : cette procédure d'installation nécessite l'utilisation de sudo sur votre système.
+
 chmod +x ./install_fr.sh
 
 ./install_fr.sh
