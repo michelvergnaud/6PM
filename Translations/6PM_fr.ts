@@ -72,7 +72,7 @@
         <location filename="../src/UI/MVMainFrame.cpp" line="81"/>
         <location filename="../src/UI/MVMainFrame.cpp" line="141"/>
         <source>Save as</source>
-        <translation>Sauver sous</translation>
+        <translation>Sauvegarder sous</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="82"/>
@@ -137,7 +137,7 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="179"/>
         <source>Preset</source>
-        <translation>Préréglage</translation>
+        <translation>Pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="214"/>
@@ -147,22 +147,22 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="239"/>
         <source>Low Pass</source>
-        <translation>Passe-Bas</translation>
+        <translation>Passe-bas</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="240"/>
         <source>High Pass</source>
-        <translation>Passe-Haut</translation>
+        <translation>Passe-haut</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="241"/>
         <source>Band Pass</source>
-        <translation>Passe-Bande</translation>
+        <translation>Passe-bande</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="242"/>
         <source>Notch</source>
-        <translation>Coupe-Bande</translation>
+        <translation>Coupe-bande</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="275"/>
@@ -177,7 +177,7 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="287"/>
         <source>6PM Filter Freq Envelope</source>
-        <translation>6PM Enveloppe de Filtre</translation>
+        <translation>6PM Enveloppe de filtre</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="652"/>
@@ -203,7 +203,7 @@
         <location filename="../src/UI/MVMainFrame.cpp" line="708"/>
         <location filename="../src/UI/MVMainFrame.cpp" line="831"/>
         <source>Impossible to rename file</source>
-        <translation>Impossible de ronomer le fichier</translation>
+        <translation>Impossible de renommer le fichier</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="717"/>
@@ -218,22 +218,22 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="816"/>
         <source>6PM preset name</source>
-        <translation>6PM nom de préréglage</translation>
+        <translation>6PM nom de pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="816"/>
         <source>Overwrite preset </source>
-        <translation>Remplacer le préréglage</translation>
+        <translation>Remplacer le pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="831"/>
         <source>Rename preset</source>
-        <translation>Renommer le préréglage</translation>
+        <translation>Renommer le pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="845"/>
         <source>Save preset as</source>
-        <translation>Sauver le préréglage sous</translation>
+        <translation>Sauver le pré-réglage sous</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="845"/>
@@ -243,7 +243,7 @@
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="891"/>
         <source>Create bank</source>
-        <translation>Nouvelle</translation>
+        <translation>Nouvelle banque</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainFrame.cpp" line="891"/>
@@ -296,27 +296,27 @@
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="68"/>
         <source>Presets</source>
-        <translation>Préréglages</translation>
+        <translation>Pré-réglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="69"/>
         <source>Modified presets</source>
-        <translation>Préréglages modifiés</translation>
+        <translation>Pré-réglages modifiés</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="70"/>
         <source>Export current preset</source>
-        <translation>Exportation du préréglage courant</translation>
+        <translation>Export du pré-réglage courant</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="71"/>
         <source>Import preset</source>
-        <translation>Importation d&apos;un préréglage</translation>
+        <translation>Import d&apos;un pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="72"/>
         <source>Restore factory presets</source>
-        <translation>Restaurer les préréglages d&apos;origine</translation>
+        <translation>Restaurer les pré-réglages d&apos;origine</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="73"/>
@@ -326,7 +326,7 @@
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="148"/>
         <source>6PM Export current preset</source>
-        <translation>6PM Exportation du préréglage courant</translation>
+        <translation>6PM Export du pré-réglage courant</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="159"/>
@@ -334,12 +334,12 @@
         <location filename="../src/UI/MVMainWindow.cpp" line="182"/>
         <location filename="../src/UI/MVMainWindow.cpp" line="196"/>
         <source>6PM Import preset</source>
-        <translation>6PM Importation d&apos;un préréglage</translation>
+        <translation>6PM Import d&apos;un pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="166"/>
         <source>Overwrite preset </source>
-        <translation>Remplacer le préréglage</translation>
+        <translation>Remplacer le pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="182"/>
@@ -350,24 +350,24 @@
         <location filename="../src/UI/MVMainWindow.cpp" line="196"/>
         <source>Overwrite existing presets ? 
 (They will be saved in %1)</source>
-        <translation>Remplacer les préréglages existants ?
+        <translation>Remplacer les pré-réglages existants ?
 (Ils seront sauvegardés dans %1)</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="204"/>
         <location filename="../src/UI/MVMainWindow.cpp" line="220"/>
         <source>6PM restore presets</source>
-        <translation>6PM restauration des préréglages</translation>
+        <translation>6PM restauration des pré-réglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="204"/>
         <source>Impossible to find presets</source>
-        <translation>Impossible de trouver les préréglages</translation>
+        <translation>Impossible de trouver les pré-réglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="220"/>
         <source>Impossible to copy presets</source>
-        <translation>Impossible de copier les préréglages</translation>
+        <translation>Impossible de copier les pré-réglages</translation>
     </message>
     <message>
         <location filename="../src/UI/MVMainWindow.cpp" line="260"/>
@@ -398,7 +398,7 @@
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="35"/>
         <source>6PM modified presets</source>
-        <translation>6PM préréglages modifiés</translation>
+        <translation>6PM pré-réglages modifiés</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="44"/>
@@ -408,7 +408,7 @@
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="44"/>
         <source>Preset</source>
-        <translation>Préréglage</translation>
+        <translation>Pré-réglage</translation>
     </message>
     <message>
         <location filename="../src/UI/MVSavePresetsDialog.cpp" line="71"/>
@@ -459,13 +459,13 @@
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="41"/>
         <source>Invert midi CC</source>
-        <translation>Inverser</translation>
+        <translation>Inverser le CC midi</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="43"/>
         <location filename="../src/UI/MVControllerWidget.cpp" line="86"/>
         <source>Not assigned</source>
-        <translation>Non assigné</translation>
+        <translation>Non-assigné</translation>
     </message>
     <message>
         <location filename="../src/UI/MVControllerWidget.cpp" line="80"/>
@@ -505,7 +505,7 @@
     <message>
         <location filename="../src/main.cpp" line="101"/>
         <source>Failed to copy presets and midimaps files</source>
-        <translation>Impossible de copier le fichiers de préréglages et midimaps</translation>
+        <translation>Impossible de copier les fichiers de pré-réglages et midimaps</translation>
     </message>
 </context>
 </TS>
