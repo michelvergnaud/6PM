@@ -134,6 +134,7 @@ MVMainFrame::MVMainFrame(QWidget *parent) : QSplitter(parent)
 
     MVBackground * presetButtonsWidget = new MVBackground();
     QGridLayout * presetButtonsBox = new QGridLayout;
+    presetButtonsBox->setContentsMargins(0,0,0,0);
     presetButtonsWidget->setLayout(presetButtonsBox);
 
     MVPushButton::setColors(Qt::black, Qt::darkGray);
@@ -147,7 +148,7 @@ MVMainFrame::MVMainFrame(QWidget *parent) : QSplitter(parent)
     presetButtonsBox->setColumnStretch(1,10);
     presetButtonsBox->setColumnStretch(2,0);
     presetButtonsBox->setColumnStretch(3,10);
-    presetButtonsBox->setColumnStretch(4,10);
+    presetButtonsBox->setColumnStretch(4,20);
 
     presetButtonsBox->addWidget(cbPreset,0,0,1,5);
 
