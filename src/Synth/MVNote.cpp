@@ -51,6 +51,12 @@ MVNote::MVNote(const float f)
     createAlgo();
 
     pThread = 0;
+    if (sem_init(&sem, 0, 0) < 0 )
+    {
+        std::cout << "Error on jack note sem_init " << std::endl;
+        //return NULL;
+    }
+
 }
 
 MVNote::~MVNote()
@@ -61,6 +67,7 @@ MVNote::~MVNote()
     delete[] bufferR;
     delete filterL;
     delete filterR;
+    sem_destroy(&sem);
 }
 
 
@@ -261,11 +268,11 @@ void *MVNote::_noteThread(void *arg)
 void *MVNote::noteThread(void)
 {
     bRunning = true;
-    if (sem_init(&sem, 0, 0) < 0 )
-    {
-        std::cout << "Error on jack note sem_init " << std::endl;
-        return NULL;
-    } 
+//    if (sem_init(&sem, 0, 0) < 0 )
+//    {
+//        std::cout << "Error on jack note sem_init " << std::endl;
+//        return NULL;
+//    }
     while (bPlaying)
     {
         for(int i=0;i<NB_OSC;i++)
@@ -283,7 +290,7 @@ void *MVNote::noteThread(void)
         }
         fillBuffer();
     }
-    sem_destroy(&sem);
+    //sem_destroy(&sem);
 
     bRunning = false;
 

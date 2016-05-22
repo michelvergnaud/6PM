@@ -248,6 +248,7 @@ void MVPlayer::stopAllNotes()
 {
     for(int i=0;i<NB_NOTES;i++)
         notes[i]->stopNow();
+    posNextNote = 0;
     for(int i=0;i<maxPolyphony;i++)
         playingNotes[i] = NULL;
     bSustainOn = false;

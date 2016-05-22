@@ -165,7 +165,8 @@ bool MVControlManager::loadMidiMap(QString name)
         for(int i = 0; i<controllers.size();i++)
         {
             MVController * c = controllers.at(i);
-            registerAssign(settings.value(c->getName()).toInt(), c);
+            if( ! c->getName().isEmpty())
+                registerAssign(settings.value(c->getName()).toInt(), c);
         }
     }
 

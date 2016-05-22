@@ -205,7 +205,7 @@ MVMainFrame::MVMainFrame(QWidget *parent) : QSplitter(parent)
     butTest = new MVPushButton("Test",this);
 
     butPanic = new QPushButton(QIcon(":/images/stop"),"");
-    butPanic->setStyleSheet("background-color: rgb(255, 0, 0);");
+    butPanic->setStyleSheet("background-color: rgb(255, 64, 64);");
 
     buttsLayout->addWidget(new QLabel("Diapason"),1);
     buttsLayout->addWidget(dialDiapason,2);
@@ -222,7 +222,6 @@ MVMainFrame::MVMainFrame(QWidget *parent) : QSplitter(parent)
     volSlider->setMinimum(0);
     volSlider->setMaximum(100);
     volSlider->setValue(settings.value("mainVolume", 50 ).toInt());
-
 
     volLayout->setContentsMargins(2,2,2,2);
     volLayout->addWidget(buttsWidget,3);
